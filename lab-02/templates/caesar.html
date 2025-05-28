@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Mật mã Caesar{% endblock %}
+
+{% block content %}
+<h2>Mật mã Caesar</h2>
+<form method="POST" action="{{ url_for('caesar') }}">
+    <div>
+        <label for="text">Văn bản:</label>
+        <textarea id="text" name="text" rows="4" required>{{ current_text or '' }}</textarea>
+    </div>
+    <div>
+        <label for="key">Khóa (số bước dịch chuyển):</label>
+        <input type="number" id="key" name="key" value="{{ key or '' }}" required>
+    </div>
+    <div>
+        <button type="submit" name="action" value="encrypt">Mã hóa</button>
+        <button type="submit" name="action" value="decrypt" class="decrypt">Giải mã</button>
+    </div>
+</form>
+
+{% if result is defined %}
+<div class="result">
+    <h3>Kết quả:</h3>
+    <p>{{ result }}</p>
+</div>
+{% endif %}
+{% endblock %}
